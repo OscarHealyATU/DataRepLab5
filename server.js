@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const path = require('path');
 
 // defines a route for get requests, / is the site root
 /*
@@ -8,6 +9,12 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 */
+
+
+app.get('/index', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.get('/api/movies', (req, res) => {
     const movies = [
         {
@@ -42,7 +49,7 @@ app.get('/hello/:name', (req, res) => {
 });
 // defines a route with parameters name and surname
 app.get('/hello/:name/:surname', (req, res) => {
-    const {name,surname} = req.params;
+    const { name, surname } = req.params;
     res.send(`Hello ${name} ${surname}`);
 });
 // error handling middleware
@@ -50,8 +57,8 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something went wrong!');
 });
-
+app.use(express.static('public'));
 // starts the server and listens on port 3000
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+    console.log(`Example app listening on port ${port}`)
 })
