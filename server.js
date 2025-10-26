@@ -43,15 +43,12 @@ app.get('/api/movies', (req, res) => {
     res.status(201).json({ myMovies: movies });
 });
 // defines a route with parameters name 
-app.get('/hello/:name', (req, res) => {
-    const name = req.params.name;
-    res.send(`Hello ${name}`);
+app.get('/name', (req, res) => {
+    const firstname = req.query.firstname;
+    const lastname = req.query.lastname;
+    res.send(`Hello ${firstname} ${lastname}`);
 });
-// defines a route with parameters name and surname
-app.get('/hello/:name/:surname', (req, res) => {
-    const { name, surname } = req.params;
-    res.send(`Hello ${name} ${surname}`);
-});
+
 // error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);

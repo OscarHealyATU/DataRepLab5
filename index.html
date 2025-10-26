@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* imports from the public directory */
         @import url('style.css');
-        </style>
-        
+    </style>
+
     <title>index</title>
 </head>
+
 <body>
     <h1>Hello World</h1>
+    <form action="/name" method="GET">
+        First name: <input type="text" name="firstname"><br>
+        Last name: <input type="text" name="lastname"><br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
+
 </html>
