@@ -42,10 +42,21 @@ app.get('/api/movies', (req, res) => {
     // sends a JSON response with status code 201
     res.status(201).json({ myMovies: movies });
 });
-// defines a route with parameters name 
-app.get('/name', (req, res) => {
-    const firstname = req.query.firstname;
-    const lastname = req.query.lastname;
+// defines a route with parameters name for get
+// app.get('/name', (req, res) => {
+//     const firstname = req.query.firstname;
+//     const lastname = req.query.lastname;
+//     res.send(`Hello ${firstname} ${lastname}`);
+// });
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// defines a route with parameters name for post
+
+app.post('/name', (req, res) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
     res.send(`Hello ${firstname} ${lastname}`);
 });
 
@@ -54,6 +65,7 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something went wrong!');
 });
+
 app.use(express.static('public'));
 // starts the server and listens on port 3000
 app.listen(port, () => {
